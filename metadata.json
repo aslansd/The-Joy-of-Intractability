@@ -1,6 +1,5 @@
 {
   "name": "The Joy of Intractability",
-  "description": "An interactive, playable explanation of computational complexity (P, NP, NP-Completeness, P vs NP) following Nicky Case's model of active discovery.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "description": "An interactive, playable introduction to computational complexity theory covering P, NP, polynomial-time reductions, NP-completeness, P vs NP, and heuristics.",
+  "requestFramePermissions": []
 }

@@ -1,20 +1,41 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# The Joy of Intractability
 
-# Run and deploy your AI Studio app
+An interactive, playable introduction to computational complexity theory, inspired by the active-learning style of Nicky Case. The app explores **P, NP, NP-completeness, reductions, P vs NP, and practical approaches to hard optimization problems** through small interactive experiments.
 
-This contains everything you need to run your app locally.
+## Educational scope
 
-View your app in AI Studio: https://ai.studio/apps/78f5cc3b-14be-442a-9235-c52b5d341b23
+The examples are deliberately simplified. They illustrate ideas rather than claiming that a particular toy instance proves a complexity result. In particular:
 
-## Run Locally
+- **P** is about polynomial-time algorithms, not about an algorithm being literally instant.
+- **NP** is defined by polynomial-time verification of certificates; it does not mean “problems that are hard to solve.”
+- **NP-complete** problems are both in NP and NP-hard.
+- **TSP** is NP-complete in its decision form and NP-hard in its optimization form.
+- The **P vs NP** question remains open.
+- Brute-force exponential growth is used as an intuition pump, not as a proof that every NP problem needs exponential time.
 
-**Prerequisites:**  Node.js
+## Run locally
 
+Prerequisites: Node.js 18+
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev
+```
+
+For a production build:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Quality checks
+
+```bash
+npm run lint
+npm run build
+```
+
+## Deployment
+
+The frontend is a Vite/React application. For Cloud Run, the deployment should serve the generated `dist/` directory with a production HTTP server.
