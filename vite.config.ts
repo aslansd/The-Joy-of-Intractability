@@ -16,9 +16,8 @@ export default defineConfig(() => {
       },
     },
     preview: {
-      // Allow any Google Cloud Run domain (.run.app) or set to `true` to allow all hostnames
-      allowedHosts: ['.run.app'],
-      host: true, // Listens on all local IPs (0.0.0.0)
+      // Set to true to allow any incoming Host header (e.g., Cloud Run URLs)
+      allowedHosts: true,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
