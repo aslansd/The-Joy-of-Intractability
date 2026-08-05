@@ -16,14 +16,15 @@ export default defineConfig(() => {
       },
     },
     preview: {
-      // Set to true to allow any incoming Host header (e.g., Cloud Run URLs)
+      host: '0.0.0.0',
+      port: Number(process.env.PORT) || 8080,
       allowedHosts: true,
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
+      host: '0.0.0.0',
+      port: Number(process.env.PORT) || 8080,
+      allowedHosts: true, // Fixes host blocking when running dev mode in the container
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
