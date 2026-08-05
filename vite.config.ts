@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,16 +16,13 @@ export default defineConfig(() => {
       },
     },
     preview: {
-      // Cloud Run serves the production preview from its run.app hostname.
-      // Vite's preview server rejects non-local Host headers unless they are
-      // explicitly allow-listed.
-      allowedHosts: [
-        'the-joy-of-intractability-521982172736.europe-west1.run.app',
-      ],
+      // Allow any Google Cloud Run domain (.run.app) or set to `true` to allow all hostnames
+      allowedHosts: ['.run.app'],
+      host: true, // Listens on all local IPs (0.0.0.0)
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
