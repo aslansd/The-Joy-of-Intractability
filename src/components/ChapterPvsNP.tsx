@@ -65,7 +65,7 @@ export default function ChapterPvsNP({ onNext }: ChapterPvsNPProps) {
             This is the ultimate, million-dollar mystery of computer science. If we can <em>verify</em> a solution easily (NP), is there a secret shortcut to also <em>solve</em> it easily (P)?
           </p>
           <p>
-            Almost every computer scientist strongly believes <strong className="text-purple-600">P ≠ NP</strong>. Why? Because of the <strong>Exponential Explosion</strong>.
+            No one knows whether <strong className="text-purple-600">P = NP</strong>. Most complexity theorists expect P ≠ NP, but that is a conjecture, not a theorem. The exponential curve below is an illustration of brute-force growth, not a proof that NP problems require exponential time.
           </p>
           <p className="bg-purple-50/50 p-3.5 border-l-4 border-purple-500 rounded-r-lg text-[14px]">
             👉 <strong>Try it!</strong> Drag the slider below to increase the size of the problem 
@@ -73,7 +73,7 @@ export default function ChapterPvsNP({ onNext }: ChapterPvsNPProps) {
             Watch how fast the NP problem explodes compared to the polynomial one!
           </p>
           <p>
-            If $P = NP$, there is a magical algorithm hidden in the dark that instantly solves all scheduling, drug discovery, security encryption, and logistics problems. If $P \neq NP$, some equations are forever locked behind an unbreakable cosmic speed limit.
+            If P = NP, every NP problem would have a polynomial-time algorithm, including many important decision versions of scheduling and routing problems. If P ≠ NP, that does not mean every NP problem is impossible or that every exact algorithm is exponential; it means no polynomial-time algorithm exists for NP-complete problems unless P = NP.
           </p>
         </div>
       </div>
@@ -155,7 +155,7 @@ export default function ChapterPvsNP({ onNext }: ChapterPvsNPProps) {
               <div className="flex items-center justify-between">
                 <span className="font-bold text-rose-600 text-sm flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
-                  EXPONENTIAL (NP brute search)
+                  EXPONENTIAL (illustrative brute force)
                 </span>
                 <span className="font-mono text-xs text-slate-400 bg-white px-2 py-0.5 border border-slate-150 rounded-full">
                   $2^N$ ops
@@ -196,7 +196,7 @@ export default function ChapterPvsNP({ onNext }: ChapterPvsNPProps) {
             👩‍🏫 <strong>P vs NP in a nutshell:</strong>
           </span>
           <span className="font-medium max-w-lg mt-1">
-            "If recognizing a joke is easy (NP), does that mean writing a funny joke is also easy (P)?"
+            “If checking a proposed solution is efficient, must there also be an efficient way to find one?”
           </span>
         </div>
 

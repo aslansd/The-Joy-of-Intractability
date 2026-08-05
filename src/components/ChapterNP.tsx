@@ -26,7 +26,7 @@ const COLOR_MAP = {
 };
 
 export default function ChapterNP({ onNext }: ChapterNPProps) {
-  // Let's create an elegant, solvable 6-node graph.
+  // Small, solvable 5-node graph-coloring instance for the interactive example.
   const initialNodes: Node[] = [
     { id: 'A', name: 'Alamo', x: 150, y: 50 },
     { id: 'B', name: 'Baker', x: 260, y: 110 },
@@ -150,17 +150,17 @@ export default function ChapterNP({ onNext }: ChapterNPProps) {
 
         <div className="text-slate-600 space-y-4 text-[15px] leading-relaxed">
           <p>
-            Some puzzles are extremely hard to <strong>solve</strong>, but if someone hands you the solution, it's a piece of cake to <strong>verify</strong>. That's the land of <strong className="text-indigo-600">NP</strong>.
+            NP is the class of decision problems for which a proposed solution (certificate) can be verified in polynomial time. An NP problem is not necessarily hard to solve: P is contained in NP, and many NP problems are easy in practice.
           </p>
           <p className="bg-indigo-50/50 p-3.5 border-l-4 border-indigo-500 rounded-r-lg text-[14px]">
             👉 <strong>Try it!</strong> Click individual map nodes below to cycle their colors between <strong>Red</strong>, <strong>Green</strong>, and <strong>Blue</strong>. 
             <br /><strong className="text-indigo-900">Your Goal:</strong> Color the graph so that no connected cities have the same color.
           </p>
           <p>
-            When you color correctly, checking the graph takes the computer <strong>less than 1 microsecond</strong> ($O(E)$ edges). No matter how big the graph gets, checking is instantaneous!
+            Once a coloring is proposed, checking every edge takes O(E) time: inspect each edge and make sure its endpoints have different colors. That is polynomial-time verification, not literally instantaneous.
           </p>
           <p>
-            But <strong>solving it</strong> from scratch requires guessing. With 5 nodes, there are $3^5 = 243$ possibilities. With 100 nodes, there are $3^{100}$ combinations—practically impossible to exhaustive search.
+            For this particular 3-coloring problem, a naive exhaustive solver can try up to 3^N color assignments. With 5 nodes that is 243 assignments; with 100 nodes it is 3^100, illustrating why exhaustive search scales poorly. This is an example of an exponential-time algorithm—not a definition of NP itself.
           </p>
         </div>
 
@@ -194,7 +194,7 @@ export default function ChapterNP({ onNext }: ChapterNPProps) {
               Graph 3-Coloring Machine
             </h3>
             <span className="font-mono text-xs text-slate-400">
-              $N=5 \text{ nodes}, E=7 \text{ edges}$
+              $N=5$ nodes, $E=7$ edges
             </span>
           </div>
 
@@ -281,7 +281,7 @@ export default function ChapterNP({ onNext }: ChapterNPProps) {
                   </div>
                   <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mt-1">
                     <span>Verification speed:</span>
-                    <span className="text-emerald-600 font-bold">0.001 milliseconds</span>
+                    <span className="text-emerald-600 font-bold">polynomial in input size</span>
                   </div>
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function ChapterNP({ onNext }: ChapterNPProps) {
                 className="mt-4 p-3 bg-emerald-50 text-emerald-800 text-xs rounded-xl border border-emerald-200 text-center font-semibold flex items-center justify-center gap-1.5"
               >
                 <Sparkles className="w-4 h-4 text-emerald-500" />
-                Solved! Clicking verify confirms correctness instantly. This is why Graph Coloring is in NP!
+                Solved! The proposed coloring passes the verification checks. This illustrates why the decision version of 3-coloring is in NP.
               </motion.div>
             )}
           </AnimatePresence>
@@ -318,7 +318,7 @@ export default function ChapterNP({ onNext }: ChapterNPProps) {
             🔑 <strong>NP (Nondeterministic Polynomial Time)</strong> means:
           </span>
           <span className="font-bold text-slate-700 bg-white px-2 py-0.5 border border-slate-150 rounded-full mt-1.5">
-            Hard to solve, but trivially easy to check when handed a key.
+            A proposed solution can be checked in polynomial time.
           </span>
         </div>
 

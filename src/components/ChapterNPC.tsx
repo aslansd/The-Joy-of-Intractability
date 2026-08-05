@@ -107,17 +107,17 @@ export default function ChapterNPC({ onNext }: ChapterNPCProps) {
 
         <div className="text-slate-600 space-y-4 text-[15px] leading-relaxed">
           <p>
-            In the 1970s, computer scientists discovered somethng magical. Some NP problems are <strong>Chameleons</strong>. If you can solve just <em>one</em> of them quickly, you can instantly solve <em>all</em> of them!
+            In the 1970s, researchers developed the modern theory of NP-completeness. An NP-complete problem is both in NP and NP-hard. If any NP-complete problem has a polynomial-time algorithm, then every problem in NP does too, so P = NP.
           </p>
           <p>
-            This process of translating one puzzle into another is called <strong>Reduction</strong>.
+            A polynomial-time reduction translates instances of one problem into another while preserving the answer. Reductions let us transfer algorithms and hardness results between problems.
           </p>
           <p className="bg-pink-50/50 p-3.5 border-l-4 border-pink-500 rounded-r-lg text-[14px]">
             👉 <strong>Try it!</strong> Click <span className="font-bold text-pink-700">Animate Reduction!</span> to see the Sudoku puzzle morph into a Graph Coloring network. 
             <br /><strong>Hover over any node/cell</strong> to trace its connections.
           </p>
           <p>
-            Sudoku is secretly just a Graph Coloring problem. Each cell is a Node, and cells in the same row, col, or box are connected by Edges so they can't share a color (number 1-4).
+            A Sudoku grid can be represented as a graph-coloring instance: each cell is a vertex, and two vertices are connected when their cells share a row, column, or box. A valid Sudoku solution corresponds to a proper 4-coloring. This visualization illustrates the encoding; it is not by itself a proof that Sudoku is NP-complete. The hardness result concerns generalized Sudoku.
           </p>
         </div>
 
@@ -145,7 +145,7 @@ export default function ChapterNPC({ onNext }: ChapterNPCProps) {
               ) : (
                 <>
                   <span className="w-2.5 h-2.5 bg-slate-400 rounded-full" />
-                  Classic 4x4 Sudoku Grid
+                  4×4 Sudoku Example
                 </>
               )}
             </h3>
@@ -255,10 +255,10 @@ export default function ChapterNPC({ onNext }: ChapterNPCProps) {
 
         <div className="w-full mt-4 bg-slate-50 border border-slate-150 p-4 rounded-xl text-xs text-slate-500 text-center flex flex-col items-center gap-1">
           <span>
-            💫 <strong>NP-Complete (The Chameleon Class)</strong> is amazing:
+            💫 <strong>NP-Complete (The Chameleon Class)</strong> means:
           </span>
           <span className="font-bold text-slate-700 bg-white px-2 py-0.5 border border-slate-150 rounded-full mt-1.5">
-            Sudoku • Traveling Salesperson • Protein Folding • Circuit Design
+            SAT • 3-Coloring • Hamiltonian Cycle • Generalized Sudoku
           </span>
         </div>
 

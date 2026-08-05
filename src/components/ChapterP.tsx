@@ -164,10 +164,10 @@ export default function ChapterP({ onNext }: ChapterPProps) {
             or <span className="inline-flex items-center gap-1 mx-1 px-1 bg-white border border-slate-200 rounded text-orange-600 font-semibold"><Home className="w-3.5 h-3.5" /> Customer</span>.
           </p>
           <p>
-            No matter how chaotic your maze gets, the computer solves it instantly. This algorithm runs in <strong>Polynomial Time</strong>, or simply: <strong className="text-emerald-600">P</strong>.
+            This maze uses breadth-first search. On this N × N grid, it runs in polynomial time: O(V + E), which is O(N²) for this grid. Polynomial does not mean instant—it means the worst-case work grows like a polynomial in the input size.
           </p>
           <p>
-            For a city of size <strong className="font-mono text-slate-800 bg-slate-100 px-1 rounded">N × N</strong>, finding the path takes at most a small multiple of <strong className="font-mono text-slate-800 bg-slate-100 px-1 rounded">N²</strong> steps. If the city size doubles, the work only quadruples. Easy peasy!
+            For this unweighted N × N grid, there are N² vertices and O(N²) edges, so BFS takes O(N²) time. If N doubles, the asymptotic work is about four times larger.
           </p>
         </div>
 
@@ -218,7 +218,7 @@ export default function ChapterP({ onNext }: ChapterPProps) {
             <div className="flex gap-4 text-xs font-mono text-slate-500">
               <div>Size: <span className="text-slate-800 font-bold">{gridSize}x{gridSize}</span></div>
               <div>Visits: <span className="text-slate-800 font-bold">{operations}</span></div>
-              <div>Time: <span className="text-emerald-600 font-bold">&lt; 0.5ms</span></div>
+              <div>Work: <span className="text-emerald-600 font-bold">O(N²)</span></div>
             </div>
           </div>
 
@@ -301,10 +301,10 @@ export default function ChapterP({ onNext }: ChapterPProps) {
 
         <div className="w-full mt-4 bg-slate-50 border border-slate-150 p-4 rounded-xl text-xs text-slate-500 text-center flex flex-col items-center gap-1">
           <span>
-            💡 <strong>P (Polynomial Time)</strong> includes everything computers do comfortably:
+            💡 <strong>P (Polynomial Time)</strong> contains problems for which we know polynomial-time algorithms:
           </span>
           <span className="font-bold text-slate-700 bg-white px-2 py-0.5 border border-slate-150 rounded-full mt-1.5">
-            Searching web pages • Sorting profiles • Chatting over the network
+            Shortest paths • Sorting • Minimum spanning trees
           </span>
         </div>
 

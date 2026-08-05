@@ -112,12 +112,46 @@ export default function ChapterCoping({ onNext }: ChapterCopingProps) {
     return sequence;
   };
 
+  const calculateCycleLength = (pathIds: string[]) => {
+    if (pathIds.length < 2) return 0;
+    let total = 0;
+    for (let i = 0; i < pathIds.length - 1; i++) {
+      const a = stars.find(s => s.id === pathIds[i]);
+      const b = stars.find(s => s.id === pathIds[i + 1]);
+      if (a && b) total += distance(a, b);
+    }
+    const first = stars.find(s => s.id === pathIds[0]);
+    const last = stars.find(s => s.id === pathIds[pathIds.length - 1]);
+    if (first && last) total += distance(last, first);
+    return total;
+  };
+
   // Brute Force Perfect path sequence
   const computeBrutePath = (): string[] => {
-    // Return standard global shortest sequence (found by optimal solver)
-    // For our specific coordinates, Sirius(1)->Vega(2)->Altair(3)->Capella(8)->Rigel(4)->Antares(5)->Betelgeuse(6)->Polaris(7)
-    // Let's list a perfect path traversal: Sirius -> Vega -> Altair -> Rigel -> Antares -> Betelgeuse -> Polaris -> Capella (8)
-    return ['1', '2', '3', '4', '5', '6', '7', '8'];
+    // Exact search for this 8-star demo. Fixing Sirius as the start leaves 7! = 5,040 tours.
+    const rest = stars.filter(s => s.id !== '1').map(s => s.id);
+    let bestPath: string[] = ['1', ...rest];
+    let bestLength = Infinity;
+
+    const permute = (arr: string[], start: number) => {
+      if (start === arr.length) {
+        const candidate = ['1', ...arr];
+        const length = calculateCycleLength(candidate);
+        if (length < bestLength) {
+          bestLength = length;
+          bestPath = candidate;
+        }
+        return;
+      }
+      for (let i = start; i < arr.length; i++) {
+        [arr[start], arr[i]] = [arr[i], arr[start]];
+        permute(arr, start + 1);
+        [arr[start], arr[i]] = [arr[i], arr[start]];
+      }
+    };
+
+    permute([...rest], 0);
+    return bestPath;
   };
 
   const triggerBruteForceAnimation = async () => {
@@ -125,10 +159,10 @@ export default function ChapterCoping({ onNext }: ChapterCopingProps) {
     setBruteLoading(true);
 
     const stages = [
-      '🔍 Permuting path space: 40,320 combinations...',
+      '🔍 Permuting path space: 5,040 tours (7! with Sirius fixed)...',
       '🌀 Checking Sirius-Vega permutations...',
-      '🌡️ Thermostats high: evaluating 2,000 candidates/ms...',
-      '🔥 CPU at 99%: Calculating optimal intersection alignments...',
+      '🌡️ Comparing candidate tours...',
+      '🔥 Keeping the shortest tour found so far...',
       '🚀 Minimal total distance converged!'
     ];
 
@@ -165,7 +199,7 @@ export default function ChapterCoping({ onNext }: ChapterCopingProps) {
 
         <div className="text-slate-600 space-y-4 text-[15px] leading-relaxed">
           <p>
-            The Travelling Salesperson Problem (TSP) is NP-Complete. If a space captain needs to visit 50 stars, a perfect computer exact calculation takes billions of years.
+            The decision version of the Travelling Salesperson Problem (TSP) is NP-complete; the optimization version is NP-hard. Exact algorithms can become expensive as the number of cities grows, although practical performance depends heavily on the algorithm and instance.
           </p>
           <p>
             So, how do programmers cope? <strong>They compromise!</strong>
@@ -176,7 +210,7 @@ export default function ChapterCoping({ onNext }: ChapterCopingProps) {
           </div>
 
           <p>
-            Our <strong>Heuristic Solver</strong> is an instant "approximate" shortcut. It selects the "nearest neighbor" greedy choice. It runs in under 0.1ms, but occasionally commits a funny error at the end!
+            Our <strong>Heuristic Solver</strong> uses the nearest-neighbor greedy rule: repeatedly visit the closest unvisited star. It is fast for this tiny example, but it is not guaranteed to find the optimal tour.
           </p>
         </div>
 
