@@ -15,6 +15,14 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    preview: {
+      // Cloud Run serves the production preview from its run.app hostname.
+      // Vite's preview server rejects non-local Host headers unless they are
+      // explicitly allow-listed.
+      allowedHosts: [
+        'the-joy-of-intractability-521982172736.europe-west1.run.app',
+      ],
+    },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
