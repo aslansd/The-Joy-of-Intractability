@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, ArrowRight, ArrowLeft, Layers, Trophy, Cpu, Network, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowLeft, Layers, Trophy, Cpu, Network, CheckCircle2, RotateCcw } from 'lucide-react';
 import { ActiveChapter } from './types';
 
 // Import our custom interactive modular chapters
@@ -113,7 +113,7 @@ export default function App() {
                   </h1>
 
                   <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    Why can computers find routes on a map instantly, but get totally stumped scheduling school exams? 
+                    Why can some problems be solved efficiently, while others become difficult as the input grows? 
                     <br /><span className="mt-2 block font-semibold text-slate-800">Welcome to computational complexity.</span>
                   </p>
 
@@ -216,7 +216,7 @@ export default function App() {
                     </span>
                     <h3 className="font-extrabold text-slate-900 text-sm">Solved Fast</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Easy to find and easy to check. Examples are shortest roads, dictionary searches, and sorting numbers.
+                      Problems solvable in polynomial time by a deterministic algorithm. Examples include shortest paths, sorting, and many search tasks.
                     </p>
                   </div>
 
@@ -226,7 +226,7 @@ export default function App() {
                     </span>
                     <h3 className="font-extrabold text-slate-900 text-sm">Verified Fast</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Wicked hard to solve on larger scales, but instantly simple to check if handed a key/solution.
+                      Problems whose proposed solutions can be verified in polynomial time. Some NP problems are also in P; whether every NP problem is in P is unknown.
                     </p>
                   </div>
 
@@ -236,7 +236,7 @@ export default function App() {
                     </span>
                     <h3 className="font-extrabold text-slate-900 text-sm">The Chameleons</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      The hardest problems in NP. Solving any single one fast unlocks polynomial solutions for every problem in NP!
+                      Problems that are both in NP and NP-hard. A polynomial-time algorithm for any NP-complete problem would imply P = NP.
                     </p>
                   </div>
                 </div>
@@ -244,8 +244,7 @@ export default function App() {
                 <div className="p-4 bg-slate-50 border border-slate-150 rounded-2xl flex items-start gap-3.5 text-xs text-slate-600 max-w-xl text-left leading-relaxed">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong>Remember:</strong> Even though computers can't calculate optimal solutions for NP-Complete equations perfectly, 
-                    programmers survive using <strong>smart approximations</strong> and <strong>heuristics</strong> to keep civilization thriving!
+                    <strong>Remember:</strong> NP-completeness does not mean every instance is impossible to solve. In practice, exact algorithms, pruning, special structure, approximation algorithms, and heuristics can all be useful.
                   </div>
                 </div>
 
